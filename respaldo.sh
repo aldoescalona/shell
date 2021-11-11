@@ -16,7 +16,7 @@ mv $RESPFILENAME RESPALDO_1.zip
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST1 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST1.BK.sql
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST2 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST2.BK.sql
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST3 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST3.BK.sql
- mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST4 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST4.BK.sql
+ # mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST4 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST4.BK.sql
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST5 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST5.BK.sql
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST6 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST6.BK.sql
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST7 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST7.BK.sql
@@ -24,6 +24,7 @@ mv $RESPFILENAME RESPALDO_1.zip
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST9 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST9.BK.sql 
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST10 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST10.BK.sql
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST11 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST11.BK.sql
+ mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers RST12 | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'> /opt/respaldos/RST12.BK.sql
 
 # RST_X [1,2,3]
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-lock-tables --skip-triggers --no-data RSTX | sed -e 's/\/\*[^*]*DEFINER=[^*]*\*\///'> /opt/respaldos/1.RST_X.sql
@@ -38,11 +39,14 @@ mv $RESPFILENAME RESPALDO_1.zip
  mysqldump -u root -proot --routines --default-character-set=UTF8 --no-create-info --no-data --no-create-db --skip-opt risto | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/tristo.sql
 
 # controluser
- mysqldump -u root -proot --skip-comments --default-character-set=UTF8 controluser | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/routines_controluser.sql
+ mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-triggers  controluser | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/controluser.sql
+ mysqldump -u root -proot --routines --default-character-set=UTF8 --no-create-info --no-data --no-create-db --skip-opt controluser | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/r.controluser.sql
 # ctrlristo
- mysqldump -u root -proot --skip-comments --default-character-set=UTF8 ctrlristo | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/routines_ctrlristo.sql
+ mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-triggers  ctrlristo | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/ctrlristo.sql
+ mysqldump -u root -proot --routines --default-character-set=UTF8 --no-create-info --no-data --no-create-db --skip-opt ctrlristo | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/r.ctrlristo.sql
 # appapi
- mysqldump -u root -proot --skip-comments --default-character-set=UTF8 appapi | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/routines_appapi.sql
+ mysqldump -u root -proot --skip-comments --default-character-set=UTF8 --skip-triggers  appapi | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/appapi.sql
+ mysqldump -u root -proot --routines --default-character-set=UTF8 --no-create-info --no-data --no-create-db --skip-opt appapi | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | sed -e 's/DEFINER=`[^`][^`]*`@`[^`][^`]*`//g'> /opt/respaldos/r.appapi.sql
 #catcorp
  mysqldump -u root -proot --skip-comments --default-character-set=UTF8 catcorp descripcionessat estado formapagosat municipio proveedorcfdi tipoasentamiento > /opt/respaldos/catcorp.BK.sql
 
